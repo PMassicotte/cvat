@@ -5,6 +5,8 @@ services:
     restart: always
     networks:
       - cvat
+    ports:
+      - "8070:8070"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
