@@ -51,6 +51,12 @@ for func in "${FUNCTIONS[@]}"; do
         continue
     fi
     echo ">>> Redeploying $func"
+    # If a previous nuctl deploy was interrupted (e.g. this script got killed
+    # mid-build), Nuclio's local state store can get stuck with the function
+    # marked "building" forever, and every future deploy then fails with
+    # "Function cannot be updated when existing function is being provisioned".
+    # Deleting first avoids that update-time check entirely.
+    nuctl delete function "$func" --platform local --force >/dev/null 2>&1 || true
     nuctl deploy --project-name cvat \
         --path "$dir" \
         --file "$dir/function.yaml" \
