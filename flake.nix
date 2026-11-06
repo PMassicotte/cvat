@@ -19,11 +19,11 @@
 
         nuctl = pkgs.stdenv.mkDerivation rec {
           pname = "nuctl";
-          version = "1.13.0";
+          version = "1.16.3";
 
           src = pkgs.fetchurl {
             url = "https://github.com/nuclio/nuclio/releases/download/${version}/nuctl-${version}-linux-amd64";
-            sha256 = "1407pci84g6g6rprniizr03qdaq08xrlagdgj2pyhk48s9q40vfz";
+            sha256 = "17zd2d1rz4n37rmwjg9flqzvpkj2a9llbg8l704h1x76wsaz17ai";
           };
 
           dontUnpack = true;
